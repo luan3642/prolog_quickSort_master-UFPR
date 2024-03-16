@@ -1,0 +1,27 @@
+quicksort([], []).
+
+% X e o PIVO
+
+quicksort([X|Xs], Ys) :-
+    particao(Xs,X, E, D),
+    quicksort(E, S1),
+    quicksort(D, S2),
+    append(S1, [X|S2], Ys).
+
+particao([], _, [], []).
+
+particao([P|Xs], X, [P|E], D) :-
+    % se o menor elemento x for menos que o PIVO ele vem para lista da esquerda
+    % lista da E
+    % lista da D.
+    % ! cutting corta arvore, corta backtracking
+    % isso aqui -> é um IF em prolog
+    P < X 
+    particao(Xs, X, E, D).
+
+particao([P|Xs], X, E, [P|D]) :-
+    P >= X,
+    particao(Xs, X, E, D).
+
+% para testar o programa USE: quicksort([4,2,3,5,8,7,1], Y)
+% pode usar qualquer conjunto de numeros....
